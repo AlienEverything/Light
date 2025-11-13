@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البحث الكامل - Full Research</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #d4af37;
+            --accent-light: #f4e5b8;
+            --text-light: #ffffff;
+            --text-dark: #0f0f0f;
+            --gradient-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-2: linear-gradient(135deg, #d4af37 0%, #f4e5b8 100%);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.3);
+            --shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--primary);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        body.en {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-2);
+            border-radius: 10px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 3rem;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: var(--shadow-dark);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 3rem;
+            background: rgba(26, 26, 46, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mawhiba-logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4));
+            transition: all 0.4s ease;
+        }
+
+        .mawhiba-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 8px 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo a {
+            text-decoration: none;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--gradient-2);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: var(--text-dark);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: inherit;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .nav-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .main-content {
+            margin-top: 120px;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.6;
+            padding: 0 1rem;
+            word-wrap: break-word;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--accent-light);
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .section:hover::before {
+            left: 100%;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--accent);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-2);
+        }
+
+        body[dir="ltr"] .section-title::after {
+            left: auto;
+            right: 0;
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .formula {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .objectives-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objectives-list li {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-right: 4px solid var(--accent);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        body[dir="ltr"] .objectives-list li {
+            border-right: none;
+            border-left: 4px solid var(--accent);
+        }
+
+        .objectives-list li:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateX(-10px);
+        }
+
+        body[dir="ltr"] .objectives-list li:hover {
+            transform: translateX(10px);
+        }
+
+        footer {
+            background: var(--gradient-1);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--accent);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .mawhiba-logo {
+                height: 50px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+                margin-top: 180px;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-content {
+                font-size: 1.1rem;
+            }
+
+            .formula {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="https://alieneverything.github.io/Portfolio/mwhibah_logo1.png" alt="Mawhiba Logo" class="mawhiba-logo">
+                <div class="logo"><a href="index.html" id="logoText">مشروع البحث العلمي</a></div>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn" id="homeBtn">الصفحة الرئيسية</a>
+                <button class="nav-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <h1 class="page-title" id="pageTitle">دراسة انكسار الضوء عبر طبقات شفافة متعددة: لماذا تختفي الألوان بينما تبقى خطوط القلم السوداء ظاهرة</h1>
+        <p class="page-subtitle" id="pageSubtitle">البحث الكامل - Full Research Paper</p>
+
+        <div class="section">
+            <h2 class="section-title" id="introTitle">المقدمة - Introduction</h2>
+            <div class="section-content" id="introContent">
+                <p>تدرس هذه الدراسة كيف ينحني الضوء أثناء مروره عبر مواد شفافة مختلفة مثل الماء والبلاستيك والهواء. الهدف الرئيسي هو فهم سبب بقاء الخطوط السوداء المرسومة على سطح الكيس البلاستيكي واضحة وحادة عند غمر الكيس في الماء، بينما تبدو الألوان المرسومة داخل الكيس وكأنها تبهت أو تختفي. باستخدام مواد بسيطة، توضح هذه التجربة كيف تؤثر اختلافات معامل الانكسار على ما نراه.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="backgroundTitle">الخلفية العلمية والأدبيات - Background & Literature Review</h2>
+            <div class="section-content" id="backgroundContent">
+                <p>يحدث الانكسار عندما يمر الضوء عبر مواد مختلفة، مما يؤدي إلى تغيير مساره. معامل الانكسار (n) للوسط هو مقياس لمدى تباطؤ سرعة الضوء عندما يدخل هذا الوسط. يتم تعريفه على أنه نسبة سرعة الضوء في الفراغ إلى سرعته في الوسط. عندما يمر الضوء من وسط إلى وسط آخر ذو معامل انكسار مختلف، ينحني مساره وفقًا لقانون سنِل:</p>
+                
+                <div class="formula">n₁ sin θ₁ = n₂ sin θ₂</div>
+                
+                <p>يؤدي انكسار الضوء إلى تأثيرات مثل "العمق الظاهري"، حيث تظهر الأجسام في مكان مختلف عند غمرها في الماء مقارنة عند رؤيتها في الهواء. دراسات سابقة تناولت قياس معاملات الانكسار للمواد المختلفة مثل الزجاج والماء والبلاستيك باستخدام الليزر والمنشورات وغيرها من المعدات البصرية. تظهر هذه الدراسات كيف تؤثر اختلافات معامل الانكسار على انتقال الضوء عبر طبقات من الوسائط.</p>
+                
+                <p>أحد الأمثلة على ذلك هو تجربة "اختفاء الأجسام ومعامل الانكسار" التي أجرتها Scitech، والتي تظهر كيف يتغير الضوء عند مروره عبر وسائط ذات معاملات انكسار مختلفة، مما يجعل الجسم يظهر وكأنه اختفى أو تحول مكانه. بناءً على هذا البحث، تقدم هذه الدراسة طريقة مبتكرة لإظهار تأثير انكسار الضوء عبر ثلاث وسائط شفافة: البلاستيك والماء والهواء.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="discussionTitle">النقاش والتحليل - Discussion & Analysis</h2>
+            <div class="section-content" id="discussionContent">
+                <p>البحث قدّم لنا ظاهرة انكسار الضوء وتأثيرها على وضوح الصور عندما يمر الضوء عبر مواد شفافة مختلفة مثل الماء والبلاستيك والهواء. عادةً ما تكون أشعة الضوء مستقيمة، ولكنها تنحني عندما يدخل الضوء وسطًا ذا معامل انكسار مختلف. معامل الانكسار هو خاصية للمادة تُظهر مقدار تباطؤ الضوء وانحنائه عند مروره عبر هذه المادة. هنا، نظرنا بشكل خاص إلى سلوك شعاع الضوء عندما يمر عبر الهواء والبلاستيك والماء. النقطة الرئيسية من التجربة كانت اكتشاف سبب اختفاء الألوان من جسم ما عندما يتم وضعه في الماء، بينما تبقى الخطوط السوداء دون تغيير.</p>
+                
+                <p>قمنا بتنفيذ تجربة بسيطة ولكن فعّالة لاكتشاف ذلك. كان الكيس البلاستيكي الذي يحتوي على رسمة هو الجزء الرئيسي من التجربة. تم وضع الرسمة داخل الكيس ورسمت بعض الخطوط السوداء على السطح الخارجي للكيس البلاستيكي للإشارة إلى الملامح الأساسية. ثم تم غمر الكيس الذي يحتوي على الرسمة في كوب من الماء. في لحظة الغمر، لاحظنا تغييرًا واضحًا في المشهد: أصبحت الألوان داخل الكيس باهتة لدرجة أنها كادت تختفي، لكن الخطوط السوداء على سطح الكيس ظلت موجودة وبدت كما لو كانت مرسومة حديثًا. السبب وراء هذا التأثير غير المتوقع يكمن في اختلاف معاملات الانكسار بين الهواء والبلاستيك والماء. كل واحدة من هذه المواد لها معامل انكسار فريد، وبالتالي انحنى الضوء الذي مر عبر كل منها بطرق مختلفة، مما أدى إلى فقدان وضوحه عندما دخل الماء وبالتالي أصبحت الألوان داخل الكيس أقل وضوحًا.</p>
+                
+                <p>هنا، تم إثبات تفاعل الوسائط الشفافة المختلفة مع الضوء واختلاف معاملات الانكسار التي تؤثر على إدراك الصور بنجاح من خلال التجربة. معامل الانكسار للوسط هو ما يسبب انحناء الضوء. كلما كانت الاختلافات أكبر، زاد انحناء الضوء وتغيرت رؤية الأجسام. في الواقع، الماء، الذي لديه معامل انكسار أعلى من الهواء، ينحني أشعة الضوء بشكل أكبر وأكثر حدة، وهذا هو السبب في أن العين البشرية لا تستطيع رؤية الألوان الحقيقية داخل الكيس. ومع ذلك، تظل الخطوط السوداء حادة لأنهم في الطبقة الخارجية للبلاستيك وأقرب إلى عين المراقب، أي أنهم لا يمرون عبر نفس طبقات الانكسار التي تشوه الصورة الداخلية.</p>
+                
+                <p>من خلال إجراء هذه التجربة، تمكنا من توضيح ليس فقط الجوانب النظرية لانكسار الضوء، ولكن أيضًا تقديم مثال ملموس لفهم هذه الظاهرة الفيزيائية بشكل أفضل. النتائج مهمة لأنها تساعد في حل ألغاز تفاعل الضوء مع المواد المختلفة وتأثيره على ما نراه. الطريقة المستخدمة في هذه التجربة باستخدام المواد الشائعة تبرز المبادئ الأساسية لانكسار الضوء وكيف يمكن لخصائص المواد أن تؤثر على وضوح ما نراه. التجارب التالية ستكون قادرة على التعمق في اختلافات معاملات الانكسار للمواد والأشكال وزوايا الضوء لتوسيع نطاق هذا البحث.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="objectivesTitle">الأهداف - Objectives</h2>
+            <div class="section-content">
+                <ul class="objectives-list">
+                    <li id="obj1">إظهار كيف يتغير مسار الضوء عندما ينتقل عبر مواد ذات معاملات انكسار مختلفة (هواء → بلاستيك → ماء).</li>
+                    <li id="obj2">تفسير سبب اختفاء الألوان في الرسمة داخل الكيس البلاستيكي عند غمرها في الماء، بينما تبقى خطوط القلم السوداء المرسومة على السطح مرئية.</li>
+                    <li id="obj3">ربط الظواهر التي تم ملاحظتها بمفهوم معامل الانكسار وقانون سنِل.</li>
+                    <li id="obj4">توفير طريقة عملية للطلاب لرؤية وتجربة انكسار الضوء عبر وسائط مختلفة.</li>
+                    <li id="obj5">تعزيز الفهم للتفاعل بين الضوء والمواد، وربط مفاهيم البصريات بالكيمياء الفيزيائية.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="methodTitle">المنهجية - Methodology</h2>
+            <div class="section-content" id="methodContent">
+                <p>أولاً، قمنا بأخذ ورقة ورسمنا عليها رسمة بسيطة. ثم وضعنا الرسمة داخل كيس بلاستيكي شفاف. باستخدام قلم تحديد أسود رفيع، قمنا بتحديد خطوط الرسمة على السطح الخارجي للكيس البلاستيكي. بعد ذلك، قمنا بغمر الكيس الذي يحتوي على الرسمة في كأس زجاجي مليء بالماء حتى ثلاثة أرباع الكأس. عند غمر الكيس، لاحظنا أن الألوان داخل الكيس بدا أنها تتلاشى أو تختفي تقريبًا، بينما تبقى خطوط القلم السوداء على البلاستيك واضحة ومرئية.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="resultsTitle">النتائج الأولية - Preliminary Results</h2>
+            <div class="section-content" id="resultsContent">
+                <p>خلال التجربة، عندما تم غمر الكيس البلاستيكي بالرسمة في الماء، بدا أن الألوان داخل الكيس قد اختفت أو أصبحت باهتة بشكل كبير، بينما ظلت خطوط القلم السوداء على البلاستيك مرئية وواضحة. وعند إخراج الكيس من الماء، عادت الألوان إلى الظهور تقريبًا كما كانت، مما يوضح أن التأثير قابل للعكس ويعتمد على الوسط (الماء) الذي يتلامس مع مسار الضوء.</p>
+                
+                <p>كما لاحظنا أن وضوح الرسمة الداخلية يقل مع تغير زاوية الرؤية، وكلما زاد عمق الغمر، بدا أن الألوان الداخلية أصبحت "مغسولة" أو تختفي بشكل أكبر. تتماشى هذه الملاحظات مع الفهم النظري للانكسار، حيث ينحرف الضوء عند مروره عبر وسائط ذات معاملات انكسار مختلفة، مما يتسبب في تغييرات في مظهر ووضوح الأجسام.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footerText">© 2025 حسن حمزة الشخص & أحمد حسين العواجي - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        let isArabic = true;
+
+        const translations = {
+            ar: {
+                logoText: 'مشروع البحث العلمي',
+                homeBtn: 'الصفحة الرئيسية',
+                langBtn: 'English',
+                pageTitle: 'دراسة انكسار الضوء عبر طبقات شفافة متعددة: لماذا تختفي الألوان بينما تبقى خطوط القلم السوداء ظاهرة',
+                pageSubtitle: 'البحث الكامل - Full Research Paper',
+                introTitle: 'المقدمة - Introduction',
+                introContent: '<p>تدرس هذه الدراسة كيف ينحني الضوء أثناء مروره عبر مواد شفافة مختلفة مثل الماء والبلاستيك والهواء. الهدف الرئيسي هو فهم سبب بقاء الخطوط السوداء المرسومة على سطح الكيس البلاستيكي واضحة وحادة عند غمر الكيس في الماء، بينما تبدو الألوان المرسومة داخل الكيس وكأنها تبهت أو تختفي. باستخدام مواد بسيطة، توضح هذه التجربة كيف تؤثر اختلافات معامل الانكسار على ما نراه.</p>',
+                backgroundTitle: 'الخلفية العلمية والأدبيات - Background & Literature Review',
+                backgroundContent: '<p>يحدث الانكسار عندما يمر الضوء عبر مواد مختلفة، مما يؤدي إلى تغيير مساره. معامل الانكسار (n) للوسط هو مقياس لمدى تباطؤ سرعة الضوء عندما يدخل هذا الوسط. يتم تعريفه على أنه نسبة سرعة الضوء في الفراغ إلى سرعته في الوسط. عندما يمر الضوء من وسط إلى وسط آخر ذو معامل انكسار مختلف، ينحني مساره وفقًا لقانون سنِل:</p><div class="formula">n₁ sin θ₁ = n₂ sin θ₂</div><p>يؤدي انكسار الضوء إلى تأثيرات مثل "العمق الظاهري"، حيث تظهر الأجسام في مكان مختلف عند غمرها في الماء مقارنة عند رؤيتها في الهواء. دراسات سابقة تناولت قياس معاملات الانكسار للمواد المختلفة مثل الزجاج والماء والبلاستيك باستخدام الليزر والمنشورات وغيرها من المعدات البصرية. تظهر هذه الدراسات كيف تؤثر اختلافات معامل الانكسار على انتقال الضوء عبر طبقات من الوسائط.</p><p>أحد الأمثلة على ذلك هو تجربة "اختفاء الأجسام ومعامل الانكسار" التي أجرتها Scitech، والتي تظهر كيف يتغير الضوء عند مروره عبر وسائط ذات معاملات انكسار مختلفة، مما يجعل الجسم يظهر وكأنه اختفى أو تحول مكانه. بناءً على هذا البحث، تقدم هذه الدراسة طريقة مبتكرة لإظهار تأثير انكسار الضوء عبر ثلاث وسائط شفافة: البلاستيك والماء والهواء.</p>',
+                discussionTitle: 'النقاش والتحليل - Discussion & Analysis',
+                discussionContent: '<p>البحث قدّم لنا ظاهرة انكسار الضوء وتأثيرها على وضوح الصور عندما يمر الضوء عبر مواد شفافة مختلفة مثل الماء والبلاستيك والهواء. عادةً ما تكون أشعة الضوء مستقيمة، ولكنها تنحني عندما يدخل الضوء وسطًا ذا معامل انكسار مختلف. معامل الانكسار هو خاصية للمادة تُظهر مقدار تباطؤ الضوء وانحنائه عند مروره عبر هذه المادة. هنا، نظرنا بشكل خاص إلى سلوك شعاع الضوء عندما يمر عبر الهواء والبلاستيك والماء. النقطة الرئيسية من التجربة كانت اكتشاف سبب اختفاء الألوان من جسم ما عندما يتم وضعه في الماء، بينما تبقى الخطوط السوداء دون تغيير.</p><p>قمنا بتنفيذ تجربة بسيطة ولكن فعّالة لاكتشاف ذلك. كان الكيس البلاستيكي الذي يحتوي على رسمة هو الجزء الرئيسي من التجربة. تم وضع الرسمة داخل الكيس ورسمت بعض الخطوط السوداء على السطح الخارجي للكيس البلاستيكي للإشارة إلى الملامح الأساسية. ثم تم غمر الكيس الذي يحتوي على الرسمة في كوب من الماء. في لحظة الغمر، لاحظنا تغييرًا واضحًا في المشهد: أصبحت الألوان داخل الكيس باهتة لدرجة أنها كادت تختفي، لكن الخطوط السوداء على سطح الكيس ظلت موجودة وبدت كما لو كانت مرسومة حديثًا. السبب وراء هذا التأثير غير المتوقع يكمن في اختلاف معاملات الانكسار بين الهواء والبلاستيك والماء. كل واحدة من هذه المواد لها معامل انكسار فريد، وبالتالي انحنى الضوء الذي مر عبر كل منها بطرق مختلفة، مما أدى إلى فقدان وضوحه عندما دخل الماء وبالتالي أصبحت الألوان داخل الكيس أقل وضوحًا.</p><p>هنا، تم إثبات تفاعل الوسائط الشفافة المختلفة مع الضوء واختلاف معاملات الانكسار التي تؤثر على إدراك الصور بنجاح من خلال التجربة. معامل الانكسار للوسط هو ما يسبب انحناء الضوء. كلما كانت الاختلافات أكبر، زاد انحناء الضوء وتغيرت رؤية الأجسام. في الواقع، الماء، الذي لديه معامل انكسار أعلى من الهواء، ينحني أشعة الضوء بشكل أكبر وأكثر حدة، وهذا هو السبب في أن العين البشرية لا تستطيع رؤية الألوان الحقيقية داخل الكيس. ومع ذلك، تظل الخطوط السوداء حادة لأنهم في الطبقة الخارجية للبلاستيك وأقرب إلى عين المراقب، أي أنهم لا يمرون عبر نفس طبقات الانكسار التي تشوه الصورة الداخلية.</p><p>من خلال إجراء هذه التجربة، تمكنا من توضيح ليس فقط الجوانب النظرية لانكسار الضوء، ولكن أيضًا تقديم مثال ملموس لفهم هذه الظاهرة الفيزيائية بشكل أفضل. النتائج مهمة لأنها تساعد في حل ألغاز تفاعل الضوء مع المواد المختلفة وتأثيره على ما نراه. الطريقة المستخدمة في هذه التجربة باستخدام المواد الشائعة تبرز المبادئ الأساسية لانكسار الضوء وكيف يمكن لخصائص المواد أن تؤثر على وضوح ما نراه. التجارب التالية ستكون قادرة على التعمق في اختلافات معاملات الانكسار للمواد والأشكال وزوايا الضوء لتوسيع نطاق هذا البحث.</p>',
+                objectivesTitle: 'الأهداف - Objectives',
+                obj1: 'إظهار كيف يتغير مسار الضوء عندما ينتقل عبر مواد ذات معاملات انكسار مختلفة (هواء → بلاستيك → ماء).',
+                obj2: 'تفسير سبب اختفاء الألوان في الرسمة داخل الكيس البلاستيكي عند غمرها في الماء، بينما تبقى خطوط القلم السوداء المرسومة على السطح مرئية.',
+                obj3: 'ربط الظواهر التي تم ملاحظتها بمفهوم معامل الانكسار وقانون سنِل.',
+                obj4: 'توفير طريقة عملية للطلاب لرؤية وتجربة انكسار الضوء عبر وسائط مختلفة.',
+                obj5: 'تعزيز الفهم للتفاعل بين الضوء والمواد، وربط مفاهيم البصريات بالكيمياء الفيزيائية.',
+                methodTitle: 'المنهجية - Methodology',
+                methodContent: '<p>أولاً، قمنا بأخذ ورقة ورسمنا عليها رسمة بسيطة. ثم وضعنا الرسمة داخل كيس بلاستيكي شفاف. باستخدام قلم تحديد أسود رفيع، قمنا بتحديد خطوط الرسمة على السطح الخارجي للكيس البلاستيكي. بعد ذلك، قمنا بغمر الكيس الذي يحتوي على الرسمة في كأس زجاجي مليء بالماء حتى ثلاثة أرباع الكأس. عند غمر الكيس، لاحظنا أن الألوان داخل الكيس بدا أنها تتلاشى أو تختفي تقريبًا، بينما تبقى خطوط القلم السوداء على البلاستيك واضحة ومرئية.</p>',
+                resultsTitle: 'النتائج الأولية - Preliminary Results',
+                resultsContent: '<p>خلال التجربة، عندما تم غمر الكيس البلاستيكي بالرسمة في الماء، بدا أن الألوان داخل الكيس قد اختفت أو أصبحت باهتة بشكل كبير، بينما ظلت خطوط القلم السوداء على البلاستيك مرئية وواضحة. وعند إخراج الكيس من الماء، عادت الألوان إلى الظهور تقريبًا كما كانت، مما يوضح أن التأثير قابل للعكس ويعتمد على الوسط (الماء) الذي يتلامس مع مسار الضوء.</p><p>كما لاحظنا أن وضوح الرسمة الداخلية يقل مع تغير زاوية الرؤية، وكلما زاد عمق الغمر، بدا أن الألوان الداخلية أصبحت "مغسولة" أو تختفي بشكل أكبر. تتماشى هذه الملاحظات مع الفهم النظري للانكسار، حيث ينحرف الضوء عند مروره عبر وسائط ذات معاملات انكسار مختلفة، مما يتسبب في تغييرات في مظهر ووضوح الأجسام.</p>',
+                footerText: '© 2025 حسن حمزة الشخص & أحمد حسين العواجي - جميع الحقوق محفوظة'
+            },
+            en: {
+                logoText: 'Scientific Research Project',
+                homeBtn: 'Home',
+                langBtn: 'العربية',
+                pageTitle: 'Investigation of Light Refraction through Multiple Transparent Layers: Why Colors Disappear While Black Lines Remain Visible',
+                pageSubtitle: 'Full Research Paper - البحث الكامل',
+                introTitle: 'Introduction - المقدمة',
+                introContent: '<p>This study investigates how light bends as it passes through various transparent materials like water, plastic, and air. The primary objective is to understand why black lines drawn on the outside of a plastic bag remain sharp when the bag is submerged in water, while colors drawn inside the bag appear to fade or vanish. Using simple materials, this experiment shows how differences in refractive index influence what we see.</p>',
+                backgroundTitle: 'Background & Literature Review - الخلفية العلمية',
+                backgroundContent: '<p>Refraction occurs when light passes through different materials, causing its path to change. The refractive index (n) of a medium is a measure of how much the speed of light slows down when it enters that medium. It is defined as the ratio of the speed of light in a vacuum to its speed in the medium. When light passes from one medium to another with a different refractive index, its path is bent according to Snell\'s law:</p><div class="formula">n₁ sin θ₁ = n₂ sin θ₂</div><p>This bending of light leads to effects such as "apparent depth," where objects appear to be in a different position when submerged in water compared to when they are viewed in air. Previous studies have focused on measuring refractive indices of various materials, such as glass, water, and plastics, using lasers, prisms, and other optical equipment. These studies demonstrate how differences in refractive index affect light propagation through layers of media.</p><p>One such example is the "Disappearing Objects & Refractive Index" experiment by Scitech, which shows how light from an object is altered when passed through media with differing refractive indices, making the object appear invisible or shifted in position. This study builds on this body of research by demonstrating the effect of layering three transparent media: plastic, water, and air.</p>',
+                discussionTitle: 'Discussion & Analysis - النقاش والتحليل',
+                discussionContent: '<p>This research introduced us to the phenomenon of light refraction and its effect on image visibility when light goes through different transparent substances like water, plastic, and air. Light rays are usually straight but they bend when light enters a medium with a different refractive index. A refractive index is a feature of the material which shows how much light is slowed down and bent when it goes through that material. Here, we looked particularly at how one light ray behaves when it is passing through air, plastic, and water. The major point of the trial was to find out the cause of the disappearing colors of an object when the object is put in water, while the black lines remain unchanged.</p><p>We carried out a rather straightforward yet efficient experiment to find this out. A plastic bag with a drawing was the main part of the experiment. The drawing was put in the bag and some black lines were drawn on the outside of the plastic bag to indicate the key features. The bag with the inserted drawing was dipped into a glass of water. At the moment of submergence, we noted a distinct change in the scene: the colors in the bag became so faint that they almost disappeared but the black lines on the surface of the bag were still there and looked as if they were drawn freshly. The reason for this unexpected effect lies in different refractive indices of air, plastic, and water. Every one of these substances has its own unique refractive index and the light passing through each of them was thus bent in different ways which resulted in it losing its clarity when it entered the water and therefore the colors inside the bag became less visible.</p><p>Here, different transparent mediums interacting with light and their varying refractive indexes affecting the perception of images have been successfully demonstrated by the experiment. A refractive index of a medium is what causes light bending. The bigger the differences, the more bending is done and the visibility of the objects changes. In fact, water with a higher refractive index than air bends light rays much more sharply and this is why human eyes cannot see the real colors inside the bag. However, the black lines are still crisp because they are at the outer layer of the plastic and are nearer to the observer\'s eyes i.e., they are not going through the same refractive layers that distort the interior image.</p><p>By conducting this experiment, we managed to illustrate not only the theoretical aspects of light refraction but also offer a tangible example to better understand this physical phenomenon. The results are significant because they help solve the mysteries of light interaction with various materials and its effect on what we see. The method used in this experiment with common materials brings to light the core principles of refraction as well as how the characteristics of materials can influence the clearness of what we see. The next experiments will be able to delve into the differences in refractive indices of the materials, shapes, and angles of light to extend this research.</p>',
+                objectivesTitle: 'Objectives - الأهداف',
+                obj1: 'To demonstrate how light\'s path changes when it moves through materials with different refractive indices (air → plastic → water).',
+                obj2: 'To explain why the colors in the drawing inside the plastic bag fade or disappear when submerged in water, while the black lines drawn on the surface remain visible.',
+                obj3: 'To relate the observed phenomena to the concept of refractive index and Snell\'s law.',
+                obj4: 'To provide a hands-on approach for students to visualize and experiment with light refraction through different media.',
+                obj5: 'To enhance the understanding of the interaction between light and materials, bridging concepts from optics to physical chemistry.',
+                methodTitle: 'Methodology - المنهجية',
+                methodContent: '<p>First, we took a piece of paper and drew a simple picture on it. We then placed the drawing inside a transparent plastic bag. Using a fine black marker, we traced the outlines of the drawing on the outside of the plastic bag. Next, we submerged the bag containing the drawing into a glass of water, filling the glass three-quarters full. Upon submerging the bag, we observed that the colors inside the bag appeared to fade or almost disappear, while the black lines on the plastic remained clear and visible.</p>',
+                resultsTitle: 'Preliminary Results - النتائج الأولية',
+                resultsContent: '<p>During the experiment, when the plastic bag with the drawing was submerged in water, the colors inside the bag appeared to fade, and in some cases, they almost disappeared completely. However, the black marker lines drawn on the surface of the plastic bag remained distinct and visible. When we removed the bag from the water, the colors inside the bag became visible again, demonstrating that the effect was reversible depending on the medium (water) in contact with the light path.</p><p>We also noted that the clarity of the internal drawing decreased as the angle of view changed, and the deeper the card was submerged, the more the internal colors appeared to be "washed out." These observations were consistent with the theoretical understanding of refraction, where light passing through materials with different refractive indices bends, causing changes in the appearance and clarity of objects.</p>',
+                footerText: '© 2025 Hassan Hamzah Alshakhs & Ahmed Hussain Alawaji - All Rights Reserved'
+            }
+        };
+
+        function toggleLanguage() {
+            isArabic = !isArabic;
+            const lang = isArabic ? 'ar' : 'en';
+            const dir = isArabic ? 'rtl' : 'ltr';
+            
+            document.documentElement.lang = lang;
+            document.body.dir = dir;
+            document.body.className = isArabic ? '' : 'en';
+            
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
