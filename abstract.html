@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملخص والتجربة - Abstract & Experiment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #d4af37;
+            --accent-light: #f4e5b8;
+            --text-light: #ffffff;
+            --text-dark: #0f0f0f;
+            --gradient-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-2: linear-gradient(135deg, #d4af37 0%, #f4e5b8 100%);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.3);
+            --shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--primary);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        body.en {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-2);
+            border-radius: 10px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 3rem;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: var(--shadow-dark);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 3rem;
+            background: rgba(26, 26, 46, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mawhiba-logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4));
+            transition: all 0.4s ease;
+        }
+
+        .mawhiba-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 8px 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo a {
+            text-decoration: none;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--gradient-2);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: var(--text-dark);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: inherit;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .nav-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .main-content {
+            margin-top: 120px;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.6;
+            padding: 0 1rem;
+            word-wrap: break-word;
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--accent-light);
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .section:hover::before {
+            left: 100%;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--accent);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-2);
+        }
+
+        body[dir="ltr"] .section-title::after {
+            left: auto;
+            right: 0;
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        .section-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-gold);
+            border: 3px solid var(--accent);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-placeholder {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            border: 2px dashed var(--accent);
+        }
+
+        .video-placeholder h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder p {
+            color: var(--accent-light);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: var(--gradient-1);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--accent);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .mawhiba-logo {
+                height: 50px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+                margin-top: 180px;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-content {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="https://alieneverything.github.io/Portfolio/mwhibah_logo1.png" alt="Mawhiba Logo" class="mawhiba-logo">
+                <div class="logo"><a href="index.html" id="logoText">مشروع البحث العلمي</a></div>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn" id="homeBtn">الصفحة الرئيسية</a>
+                <button class="nav-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <h1 class="page-title" id="pageTitle">الملخص والتجربة</h1>
+        <p class="page-subtitle" id="pageSubtitle">ملخص البحث وفيديو التجربة - Abstract & Experiment Video</p>
+
+        <div class="section">
+            <h2 class="section-title" id="abstractTitle">الملخص - Abstract</h2>
+            <div class="section-content" id="abstractContent">
+                <p>تستكشف هذه الدراسة سلوك الضوء عند مروره عبر مواد شفافة مختلفة. كما تدرس الظاهرة المعروفة بالانكسار، التي تصف كيفية انحناء الضوء عندما يعبر من مادة إلى أخرى، مثلما يحدث عند دخول الضوء إلى الماء أو البلاستيك. استخدمت التجربة كيسًا بلاستيكيًا يحتوي على رسمة كموضوع رئيسي. وعملية غمر الكيس في الماء تُنتج تأثيرًا بصريًا غير متوقع. حيث تبقى الخطوط السوداء على الكيس البلاستيكي واضحة، بينما تختفي الألوان الداخلية عن العين البشرية. يتغير اتجاه الضوء بناءً على المادة التي يمر بها. ويؤدي معامل الانكسار لكل مادة إلى أنماط انكسار ضوء فريدة، تحدد المعلومات البصرية التي تصبح مرئية للمشاهدين.</p>
+
+                <p>تستكشف الدراسة كيف تؤثر المواد المختلفة ذات معاملات الانكسار الخاصة بها على وضوح الصور ومرئيتها. التصميم التجريبي الأساسي يُظهر بفعالية عملية الانكسار الفعلية. تتيح لك التجربة ملاحظة كيفية تأثير تغييرات المواد على إدراكك البصري مباشرة. كما توفر التجربة طريقة مباشرة لفهم المفهوم من خلال الخبرة العملية. يمكنك تجربة مواد مختلفة ودرجات حرارة للماء لملاحظة كيف تؤثر هذه التغييرات على النتيجة البصرية. تقدم التجربة خيارات اختبار متعددة تساعدك في فهم كيف يتصرف الانكسار في المواقف الفعلية.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="videoTitle">فيديو التجربة - Experiment Video</h2>
+            <div class="section-content">
+                <div class="video-container">
+                    <video controls>
+                        <source src="https://alieneverything.github.io/Light/exprmnt.mp4" type="video/mp4">
+                        <p id="videoError">متصفحك لا يدعم عرض الفيديو - Your browser does not support the video tag.</p>
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footerText">© 2025 حسن حمزة الشخص & أحمد حسين العواجي - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        let isArabic = true;
+
+        const translations = {
+            ar: {
+                logoText: 'مشروع البحث العلمي',
+                homeBtn: 'الصفحة الرئيسية',
+                langBtn: 'English',
+                pageTitle: 'الملخص والتجربة',
+                pageSubtitle: 'ملخص البحث وفيديو التجربة - Abstract & Experiment Video',
+                abstractTitle: 'الملخص - Abstract',
+                abstractContent: '<p>تستكشف هذه الدراسة سلوك الضوء عند مروره عبر مواد شفافة مختلفة. كما تدرس الظاهرة المعروفة بالانكسار، التي تصف كيفية انحناء الضوء عندما يعبر من مادة إلى أخرى، مثلما يحدث عند دخول الضوء إلى الماء أو البلاستيك. استخدمت التجربة كيسًا بلاستيكيًا يحتوي على رسمة كموضوع رئيسي. وعملية غمر الكيس في الماء تُنتج تأثيرًا بصريًا غير متوقع. حيث تبقى الخطوط السوداء على الكيس البلاستيكي واضحة، بينما تختفي الألوان الداخلية عن العين البشرية. يتغير اتجاه الضوء بناءً على المادة التي يمر بها. ويؤدي معامل الانكسار لكل مادة إلى أنماط انكسار ضوء فريدة، تحدد المعلومات البصرية التي تصبح مرئية للمشاهدين.</p><p>تستكشف الدراسة كيف تؤثر المواد المختلفة ذات معاملات الانكسار الخاصة بها على وضوح الصور ومرئيتها. التصميم التجريبي الأساسي يُظهر بفعالية عملية الانكسار الفعلية. تتيح لك التجربة ملاحظة كيفية تأثير تغييرات المواد على إدراكك البصري مباشرة. كما توفر التجربة طريقة مباشرة لفهم المفهوم من خلال الخبرة العملية. يمكنك تجربة مواد مختلفة ودرجات حرارة للماء لملاحظة كيف تؤثر هذه التغييرات على النتيجة البصرية. تقدم التجربة خيارات اختبار متعددة تساعدك في فهم كيف يتصرف الانكسار في المواقف الفعلية.</p>',
+                videoTitle: 'فيديو التجربة - Experiment Video',
+                videoPlaceholderTitle: 'سيتم إضافة الفيديو قريباً',
+                videoPlaceholderText: 'فيديو توضيحي للتجربة العملية سيتم رفعه هنا',
+                footerText: '© 2025 حسن حمزة الشخص & أحمد حسين العواجي - جميع الحقوق محفوظة'
+            },
+            en: {
+                logoText: 'Scientific Research Project',
+                homeBtn: 'Home',
+                langBtn: 'العربية',
+                pageTitle: 'Abstract & Experiment',
+                pageSubtitle: 'Research Abstract & Experiment Video - الملخص وفيديو التجربة',
+                abstractTitle: 'Abstract - الملخص',
+                abstractContent: '<p>The research investigates how light behaves when it passes through various transparent materials. The research investigates refraction which describes how light bends when it crosses from one substance to another such as when light enters water or plastic. The experiment used a plastic bag containing a drawing as its main subject. The process of submerging the bag into water produces an unexpected visual effect. The plastic bag\'s black lines maintain their clarity while the inside colors become invisible to the human eye. The direction of light changes based on the material it travels through. The refractive index of each material produces unique light bending patterns which determine what visual information becomes accessible to viewers.</p><p>The research investigates how different materials with their specific refractive indices impact the clarity and visibility of images. The basic experimental design effectively demonstrates the actual process of refraction. The experiment allows you to observe directly how material changes affect your visual perception. The experiment provides a direct method to understand the concept through practical experience. You can experiment with different materials and water temperatures to observe how these changes affect the visual outcome. The experiment offers multiple testing options which help you understand how refraction behaves in actual situations.</p>',
+                videoTitle: 'Experiment Video - فيديو التجربة',
+                videoPlaceholderTitle: 'Video Coming Soon',
+                videoPlaceholderText: 'A demonstration video of the practical experiment will be uploaded here',
+                footerText: '© 2025 Hassan Hamzah Alshakhs & Ahmed Hussain Alawaji - All Rights Reserved'
+            }
+        };
+
+        function toggleLanguage() {
+            isArabic = !isArabic;
+            const lang = isArabic ? 'ar' : 'en';
+            const dir = isArabic ? 'rtl' : 'ltr';
+            
+            document.documentElement.lang = lang;
+            document.body.dir = dir;
+            document.body.className = isArabic ? '' : 'en';
+            
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
