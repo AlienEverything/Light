@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المصادر والمراجع - Resources & References</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #d4af37;
+            --accent-light: #f4e5b8;
+            --text-light: #ffffff;
+            --text-dark: #0f0f0f;
+            --gradient-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --gradient-2: linear-gradient(135deg, #d4af37 0%, #f4e5b8 100%);
+            --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.3);
+            --shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--primary);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        body.en {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-2);
+            border-radius: 10px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 3rem;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: var(--shadow-dark);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 3rem;
+            background: rgba(26, 26, 46, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mawhiba-logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4));
+            transition: all 0.4s ease;
+        }
+
+        .mawhiba-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 8px 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo a {
+            text-decoration: none;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--gradient-2);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: var(--text-dark);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: inherit;
+            box-shadow: var(--shadow-gold);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .nav-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .main-content {
+            margin-top: 120px;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.6;
+            padding: 0 1rem;
+            word-wrap: break-word;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--accent-light);
+            margin-bottom: 4rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .section:hover::before {
+            left: 100%;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-gold);
+            border-color: var(--accent);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--gradient-2);
+        }
+
+        body[dir="ltr"] .section-title::after {
+            left: auto;
+            right: 0;
+        }
+
+        .section-content {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--text-light);
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tool-item {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--accent);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .acknowledgment {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            border-right: 5px solid var(--accent);
+            margin-top: 2rem;
+        }
+
+        body[dir="ltr"] .acknowledgment {
+            border-right: none;
+            border-left: 5px solid var(--accent);
+        }
+
+        .acknowledgment p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .reference-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            border-right: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        body[dir="ltr"] .reference-item {
+            border-right: none;
+            border-left: 4px solid var(--accent);
+        }
+
+        .reference-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(-10px);
+        }
+
+        body[dir="ltr"] .reference-item:hover {
+            transform: translateX(10px);
+        }
+
+        .reference-number {
+            display: inline-block;
+            background: var(--gradient-2);
+            color: var(--text-dark);
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .reference-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+        }
+
+        .reference-details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        .reference-details p {
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .reference-link:hover {
+            color: var(--accent-light);
+            transform: translateX(-5px);
+        }
+
+        body[dir="ltr"] .reference-link:hover {
+            transform: translateX(5px);
+        }
+
+        .contribution {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 10px;
+            font-style: italic;
+            line-height: 2;
+        }
+
+        footer {
+            background: var(--gradient-1);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid var(--accent);
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .mawhiba-logo {
+                height: 50px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+                margin-top: 180px;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .tools-list {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="https://alieneverything.github.io/Portfolio/mwhibah_logo1.png" alt="Mawhiba Logo" class="mawhiba-logo">
+                <div class="logo"><a href="index.html" id="logoText">مشروع البحث العلمي</a></div>
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-btn" id="homeBtn">الصفحة الرئيسية</a>
+                <button class="nav-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <h1 class="page-title" id="pageTitle">المصادر والمراجع</h1>
+        <p class="page-subtitle" id="pageSubtitle">هذه الصفحة تحتوي على جميع المصادر، المراجع، الأدوات المستخدمة، والمساعدات التي حصلنا عليها خلال إعداد هذا البحث</p>
+
+        <div class="section">
+            <h2 class="section-title" id="toolsTitle">الأدوات المستخدمة في التجربة - Tools Used in the Experiment</h2>
+            <div class="section-content">
+                <div class="tools-list">
+                    <div class="tool-item" id="tool1">ورقة</div>
+                    <div class="tool-item" id="tool2">ألوان</div>
+                    <div class="tool-item" id="tool3">قلم تحديد أسود</div>
+                    <div class="tool-item" id="tool4">كيس بلاستيكي</div>
+                    <div class="tool-item" id="tool5">كأس زجاجي متوسط الحجم</div>
+                    <div class="tool-item" id="tool6">ماء</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="ackTitle">شكر وتقدير - Acknowledgments</h2>
+            <div class="section-content">
+                <div class="acknowledgment">
+                    <p id="ackText1">نتقدم بجزيل الشكر والامتنان لكل من ساعدنا في إنجاز هذا البحث.</p>
+                    <p id="ackText2">نخص بالشكر معلم الكيمياء <strong id="teacherName">خالد الغامدي</strong> على دعمه المستمر وإرشاداته القيّمة التي كانت لها بصمة واضحة في نجاح هذا المشروع.</p>
+                    <p id="ackText3">كما نشكر المشرف على المشروع الأستاذ <strong id="supervisorName">ناصر العتيبي</strong> على متابعته الدقيقة وتوجيهاته المثمرة طوال فترة إعداد البحث.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title" id="refTitle">المراجع والمصادر - References & Resources</h2>
+            <div class="section-content">
+                
+                <div class="reference-item">
+                    <span class="reference-number">1</span>
+                    <h3 class="reference-title">The Law of Refraction</h3>
+                    <div class="reference-details">
+                        <p><strong id="ref1Author">المؤلف:</strong> L. Learning</p>
+                        <p><strong id="ref1Source">المصدر:</strong> Fundamentals of Heat, Light & Sound</p>
+                        <p><strong id="ref1Year">السنة:</strong> 2021</p>
+                        <p><strong id="ref1Publisher">الناشر:</strong> Pressbooks Atlanticoer-Relatlantique</p>
+                        <a href="https://pressbooks.atlanticoer-relatlantique.ca/heatlightsound/chapter/25-3-the-law-of-refraction/" target="_blank" class="reference-link" id="ref1Link">الرابط →</a>
+                    </div>
+                    <div class="contribution" id="ref1Contrib">
+                        <strong id="contribLabel1">المساهمة في البحث:</strong> ساهم هذا المصدر في بحثنا من خلال توفير شرح أساسي لقانون سنِل ومعامل الانكسار، وهي مفاهيم أساسية لفهم كيفية انحناء الضوء عند مروره عبر مواد مختلفة. يشكل هذا المصدر الأساس النظري لدراستنا حول كيفية تصرف الضوء عند واجهة الوسائط المختلفة.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <span class="reference-number">2</span>
+                    <h3 class="reference-title">Refractive Index</h3>
+                    <div class="reference-details">
+                        <p><strong id="ref2Author">المؤلفون:</strong> J. Gallegos, T. J. Stokkermans</p>
+                        <p><strong id="ref2Source">المصدر:</strong> StatPearls</p>
+                        <p><strong id="ref2Year">السنة:</strong> 2023</p>
+                        <p><strong id="ref2Publisher">الناشر:</strong> StatPearls Publishing</p>
+                        <a href="https://www.ncbi.nlm.nih.gov/books/n/statpearls/article-145050/" target="_blank" class="reference-link" id="ref2Link">الرابط →</a>
+                    </div>
+                    <div class="contribution" id="ref2Contrib">
+                        <strong id="contribLabel2">المساهمة في البحث:</strong> ساعدنا هذا المرجع في فهم مفهوم معامل الانكسار وكيف يؤثر على سرعة الضوء في المواد المختلفة. إنه ضروري لشرح كيف تؤثر الاختلافات في معامل الانكسار على الطريقة التي ينتقل بها الضوء عبر طبقات من الوسائط مثل البلاستيك والماء والهواء، وهو محور بحثنا.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <span class="reference-number">3</span>
+                    <h3 class="reference-title">Refraction</h3>
+                    <div class="reference-details">
+                        <p><strong id="ref3Author">المؤلف:</strong> S. S. Andrews</p>
+                        <p><strong id="ref3Source">المصدر:</strong> Light and Waves: A Conceptual Exploration of Physics</p>
+                        <p><strong id="ref3Year">السنة:</strong> 2023</p>
+                        <p><strong id="ref3Publisher">الناشر:</strong> Springer</p>
+                        <a href="https://link.springer.com/chapter/10.1007/978-3-031-24097-3_9" target="_blank" class="reference-link" id="ref3Link">الرابط →</a>
+                    </div>
+                    <div class="contribution" id="ref3Contrib">
+                        <strong id="contribLabel3">المساهمة في البحث:</strong> ساهم هذا العمل في بحثنا من خلال استكشاف المبادئ الأوسع للانكسار، خاصة كيف يتغير مسار الضوء بناءً على معاملات الانكسار للمواد التي يمر بها. يساعد بشكل مباشر في دراستنا حول كيفية انحناء الضوء عند المرور عبر مواد شفافة متعددة الطبقات.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <span class="reference-number">4</span>
+                    <h3 class="reference-title">Effective Refractive Index for Determining Ray Propagation in an Absorbing Dielectric Particle</h3>
+                    <div class="reference-details">
+                        <p><strong id="ref4Author">المؤلفون:</strong> P. Yang, K. N. Liou</p>
+                        <p><strong id="ref4Source">المصدر:</strong> Journal of Quantitative Spectroscopy and Radiative Transfer</p>
+                        <p><strong id="ref4Year">السنة:</strong> 2009</p>
+                        <p><strong id="ref4Publisher">الناشر:</strong> Elsevier</p>
+                        <a href="https://www.sciencedirect.com/science/article/pii/S0022407308002355" target="_blank" class="reference-link" id="ref4Link">الرابط →</a>
+                    </div>
+                    <div class="contribution" id="ref4Contrib">
+                        <strong id="contribLabel4">المساهمة في البحث:</strong> قدم هذا البحث تقدماً في دراستنا من خلال إظهار كيف تؤثر معاملات الانكسار على انتشار الضوء عبر وسائط أكثر تعقيداً. إنه ذو صلة خاصة بتجربتنا، حيث نقوم بطبقات من المواد مثل البلاستيك والماء والهواء لدراسة كيفية تصرف الضوء في مثل هذه التركيبات.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <span class="reference-number">5</span>
+                    <h3 class="reference-title">Refraction into an Isotropic Medium with Negative Permittivity and Permeability</h3>
+                    <div class="reference-details">
+                        <p><strong id="ref5Author">المؤلف:</strong> V. V. Fisanov</p>
+                        <p><strong id="ref5Source">المصدر:</strong> Russian Physics Journal</p>
+                        <p><strong id="ref5Year">السنة:</strong> 2014</p>
+                        <p><strong id="ref5Publisher">الناشر:</strong> Springer</p>
+                        <a href="https://www.researchgate.net/profile/Vasilii-Fisanov/publication/271951696_Refraction_into_an_Isotropic_Medium_with_Negative_Permittivity_and_Permeability/links/565d0de508aefe619b254e97/Refraction-into-an-Isotropic-Medium-with-Negative-Permittivity-and-Permeability.pdf" target="_blank" class="reference-link" id="ref5Link">الرابط →</a>
+                    </div>
+                    <div class="contribution" id="ref5Contrib">
+                        <strong id="contribLabel5">المساهمة في البحث:</strong> أثرى هذا المصدر بحثنا من خلال تقديم تحليل نظري أعمق لكيفية انكسار الضوء في وسائط غير تقليدية ذات سماحية ونفاذية سالبة. يضيف تعقيداً لفهمنا لكيفية تصرف الضوء في بيئات انكسارية متنوعة، ويكمل تجربتنا مع المواد الشفافة القياسية.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <span class="reference-number">6</span>
+                    <h3 class="reference-title">Light and the Laws of Reflection and Refraction as They Impact on Photography</h3>
+                    <div class="reference-details">
+                        <p><strong id="ref6Author">المؤلف:</strong> F. Osaigbovo</p>
+                        <p><strong id="ref6Source">المصدر:</strong> Yıldız Journal of Art and Design</p>
+                        <p><strong id="ref6Year">السنة:</strong> 2022</p>
+                        <p><strong id="ref6Publisher">الناشر:</strong> DergiPark</p>
+                        <a href="https://dergipark.org.tr/en/pub/yjad/issue/70535/1130708" target="_blank" class="reference-link" id="ref6Link">الرابط →</a>
+                    </div>
+                    <div class="contribution" id="ref6Contrib">
+                        <strong id="contribLabel6">المساهمة في البحث:</strong> ساهم هذا البحث في دراستنا من خلال إظهار كيفية تطبيق مبادئ الانكسار والانعكاس في سيناريوهات العالم الحقيقي مثل التصوير الفوتوغرافي. يدعم دراستنا حول كيف يسبب الانكسار تأثيرات مثل العمق الظاهري، مما يعزز الآثار العملية لتجاربنا.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footerText">© 2025 حسن حمزة الشخص & أحمد حسين العواجي - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        let isArabic = true;
+
+        const translations = {
+            ar: {
+                logoText: 'مشروع البحث العلمي',
+                homeBtn: 'الصفحة الرئيسية',
+                langBtn: 'English',
+                pageTitle: 'المصادر والمراجع',
+                pageSubtitle: 'هذه الصفحة تحتوي على جميع المصادر، المراجع، الأدوات المستخدمة، والمساعدات التي حصلنا عليها خلال إعداد هذا البحث',
+                toolsTitle: 'الأدوات المستخدمة في التجربة - Tools Used in the Experiment',
+                tool1: 'ورقة',
+                tool2: 'ألوان',
+                tool3: 'قلم تحديد أسود',
+                tool4: 'كيس بلاستيكي',
+                tool5: 'كأس زجاجي متوسط الحجم',
+                tool6: 'ماء',
+                ackTitle: 'شكر وتقدير - Acknowledgments',
+                ackText1: 'نتقدم بجزيل الشكر والامتنان لكل من ساعدنا في إنجاز هذا البحث.',
+                ackText2: 'نخص بالشكر معلم الكيمياء <strong>خالد الغامدي</strong> على دعمه المستمر وإرشاداته القيّمة التي كانت لها بصمة واضحة في نجاح هذا المشروع.',
+                ackText3: 'كما نشكر المشرف على المشروع الأستاذ <strong>ناصر العتيبي</strong> على متابعته الدقيقة وتوجيهاته المثمرة طوال فترة إعداد البحث.',
+                teacherName: 'خالد الغامدي',
+                supervisorName: 'ناصر العتيبي',
+                refTitle: 'المراجع والمصادر - References & Resources',
+                ref1Author: 'المؤلف:',
+                ref1Source: 'المصدر:',
+                ref1Year: 'السنة:',
+                ref1Publisher: 'الناشر:',
+                ref1Link: 'الرابط →',
+                ref1Contrib: '<strong>المساهمة في البحث:</strong> ساهم هذا المصدر في بحثنا من خلال توفير شرح أساسي لقانون سنِل ومعامل الانكسار، وهي مفاهي
